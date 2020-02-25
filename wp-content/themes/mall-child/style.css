@@ -1,0 +1,26 @@
+/*
+Theme Name: Mall Child
+Theme URI: http://cmsmasters.net/mall-child/
+Author: cmsmasters
+Author URI: http://cmsmasters.net/
+Description: Mall Child Theme
+Template: mall
+Version: 1.1.3
+License:
+License URI:
+Text Domain: mall-child
+Tags: one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-image-header, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+*/
+.wpcf7-form-control{
+    width: 100%;
+}
+#footer{
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+.wpcf7-list-item{
+    display: inline-block !important;
+}
