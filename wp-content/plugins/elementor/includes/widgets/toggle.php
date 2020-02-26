@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor toggle widget.
  *
@@ -98,9 +96,6 @@ class Widget_Toggle extends Widget_Base {
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Toggle Title', 'elementor' ),
 				'label_block' => true,
-				'dynamic' => [
-					'active' => true,
-				],
 			]
 		);
 
@@ -154,20 +149,6 @@ class Widget_Toggle extends Widget_Base {
 					'value' => 'fas fa-caret' . ( is_rtl() ? '-left' : '-right' ),
 					'library' => 'fa-solid',
 				],
-				'recommended' => [
-					'fa-solid' => [
-						'chevron-down',
-						'angle-down',
-						'angle-double-down',
-						'caret-down',
-						'caret-square-down',
-					],
-					'fa-regular' => [
-						'caret-square-down',
-					],
-				],
-				'label_block' => false,
-				'skin' => 'inline',
 			]
 		);
 
@@ -181,20 +162,6 @@ class Widget_Toggle extends Widget_Base {
 					'value' => 'fas fa-caret-up',
 					'library' => 'fa-solid',
 				],
-				'recommended' => [
-					'fa-solid' => [
-						'chevron-up',
-						'angle-up',
-						'angle-double-up',
-						'caret-up',
-						'caret-square-up',
-					],
-					'fa-regular' => [
-						'caret-square-up',
-					],
-				],
-				'skin' => 'inline',
-				'label_block' => false,
 				'condition' => [
 					'selected_icon[value]!' => '',
 				],
@@ -312,11 +279,11 @@ class Widget_Toggle extends Widget_Base {
 				'label' => __( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title a, {{WRAPPER}} .elementor-toggle-icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 			]
 		);
@@ -327,11 +294,11 @@ class Widget_Toggle extends Widget_Base {
 				'label' => __( 'Active Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title.elementor-active a, {{WRAPPER}} .elementor-tab-title.elementor-active .elementor-toggle-icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title.elementor-active' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_4,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_4,
 				],
 			]
 		);
@@ -341,7 +308,7 @@ class Widget_Toggle extends Widget_Base {
 			[
 				'name' => 'title_typography',
 				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-tab-title',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -387,6 +354,7 @@ class Widget_Toggle extends Widget_Base {
 				],
 				'default' => is_rtl() ? 'right' : 'left',
 				'toggle' => false,
+				'label_block' => false,
 			]
 		);
 
@@ -462,8 +430,8 @@ class Widget_Toggle extends Widget_Base {
 					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
 				],
 			]
 		);
@@ -473,7 +441,7 @@ class Widget_Toggle extends Widget_Base {
 			[
 				'name' => 'content_typography',
 				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-tab-content',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -574,10 +542,10 @@ class Widget_Toggle extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
-	 * @since 2.9.0
+	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function content_template() {
+	protected function _content_template() {
 		?>
 		<div class="elementor-toggle" role="tablist">
 			<#
